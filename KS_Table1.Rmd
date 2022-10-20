@@ -1,0 +1,110 @@
+---
+title: "K&S_Table1"
+output: html_notebook
+---
+
+This file translate the state code in the file `create_complete_data1.do` provided by the authors
+
+Specify location files
+
+```{r}
+homeDir = "/Users/rw/Documents/Replication/Knight_Schiff/Knight_Schiff_2010"
+dataDir = file.path(homeDir,"Data")
+inputDir = file.path(dataDir, "Input")
+outputDir = file.path(dataDir, "Output")
+plotsDir = file.path(homeDir, "Plots")
+codeDir = file.path(homeDir, "Code")
+```
+
+Load libraries here
+```{r}
+library(foreign)
+library(dplyr)
+library(haven)
+```
+
+Load the datasets
+```{r}
+primaries = read_dta(file.path(inputDir,"primaries.dta"))
+data2004nationalrolling4 = read_dta(file.path(inputDir,"data2004nationalrolling4.dta"))
+data2004nhcross3 = read_dta(file.path(inputDir,"data2004nhcross3.dta"))
+dem_aggregate_cnn2v9 = read_dta(file.path(inputDir,"2004_dem_aggregate_cnn2v9.dta"))
+state_dists_miles_wide = read_dta(file.path(inputDir,"state_dists_miles_wide.dta"))
+```
+
+Merge `dem_aggregate_cnn2v9.dta` with `state_dists_miles_wide` on the variable `cnt`. Keep the variables `toma` `tonc` `toar` and `tovt`. 
+
+
+Collate the names and variable labels
+
+```{r}
+#vars <- data.frame("name" = names(data), "label" = sapply(data, function(x) attr(x, "label")) %>% as.character(), "labelled" = sapply(data, is.labelled) )
+
+#names(data) <- vars$label
+```
+
+
+```{r}
+merged1 = full_join(dem_aggregate_cnn2v9, state_dists_miles_wide, by="cst")
+merged1 = merged1 %>% select(c(colnames(dem_aggregate_cnn2v9),"toma", "tonc", "toar", "tovt"))
+merged1 = merged1 %>% filter(!is.na(t))
+```
+
+Replace `wd` and `nb` codes with `NA`
+```{r}
+merged1$edwards = as.numeric(merged1$edwards)
+merged1$clark = as.numeric(merged1$clark)
+merged1$lieberman = as.numeric(merged1$lieberman)
+merged1$sharpton = as.numeric(merged1$sharpton)
+merged1$dean = as.numeric(merged1$dean)
+```
+
+Generate the logarithm of the ratio of votes for `dean` over `kerry` and similarly for `edwards`. 
+
+```{r}
+merged1$ldean = log(merged1$dean/merged1$kerry)
+merged1$ledwards = log(merged1$edwards/merged1$kerry)
+```
+
+Rename `nt` as `nt_old`
+
+```{r}
+merged1 = rename(merged1, nt_old = nt)
+```
+
+Create a new variable `nt` that counts by `t`
+
+```{r}
+tally_d = merged1 %>% group_by(t) %>% tally()
+tally_d = rename(tally_d, nt = n)
+```
+
+Merge this into the previous dataset and name this dataset `complete_data1.dta`. 
+
+```{r}
+complete_data1 = full_join(merged1, tally_d, by="t")
+```
+
+Take the mean of each of the following variable by `t`: `ldean`, `ledward`, `nt`, `tovt`, 
+`toma` and `tonc`. 
+
+```{r}
+summary1 = complete_data1 %>% 
+  group_by(t) %>% 
+  summarise(across(c(ldean,ledwards,nt,tovt,toma,tonc),~mean(.x,na.rm=TRUE)))
+```
+
+Generate the relative distances to Vermont and North Carolina
+
+```{r}
+summary1$reltovt = summary1$tovt - summary1$toma
+summary1$reltonc = summary1$tonc - summary1$toma
+```
+
+Rename the variable `nt` to `n`
+
+```{r}
+summary1 = rename(summary1, n = nt)
+```
+
+

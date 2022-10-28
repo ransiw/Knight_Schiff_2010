@@ -1,4 +1,4 @@
-cap cd "C:\Users\Administrator.MJ09220\Documents\research\momentum_in_primaries\analysis\july_2010"
+*cap cd "C:\Users\Administrator.MJ09220\Documents\research\momentum_in_primaries\analysis\july_2010"
 clear
 use bresults_nodist.dta
 *use bresults_nodistv9.dta, clear
@@ -30,7 +30,7 @@ cap gen double surprisee$j=ledwards$j-mue$j
 
 gen sigma$j=((1/sigma$z)+((n$z)/(B2xone+(sigmaeta/(alpha$z)^2))))^(-1)
 gen alpha$j=sigma$j/(sigma$j+B2xone)
-gen beta$j=(n$j*sigma$j)/(n$j*sigma$j+B2xone+(sigmaeta/(alpha$j^2)))  /this will be different since nt is different
+gen beta$j=(n$j*sigma$j)/(n$j*sigma$j+B2xone+(sigmaeta/(alpha$j^2)))  //this will be different since nt is different
 global j=$j+1
 }
 

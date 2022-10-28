@@ -1,7 +1,7 @@
-cap cd "z:\files\primaries\july24_2007\"
-cap cd "C:\Users\schiff\Documents\research\momentum_in_primaries\analysis\july_2010"
-cap cd "C:\Documents and Settings\nschiff\My Documents\research\momentum_in_primaries\analysis\july_2010"
-cap cd "C:\Users\Administrator.MJ09220\Documents\research\momentum_in_primaries\analysis\july_2010"
+*cap cd "z:\files\primaries\july24_2007\"
+*cap cd "C:\Users\schiff\Documents\research\momentum_in_primaries\analysis\july_2010"
+*cap cd "C:\Documents and Settings\nschiff\My Documents\research\momentum_in_primaries\analysis\july_2010"
+*cap cd "C:\Users\Administrator.MJ09220\Documents\research\momentum_in_primaries\analysis\july_2010"
 *Create Baseline Case
 
 use after3.dta, clear

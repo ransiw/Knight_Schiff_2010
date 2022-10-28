@@ -3,9 +3,9 @@ clear matrix
 set mem 400m
 
 *cd "z:\files\primaries\july24_2007"
-cap cd "C:\Users\schiff\Documents\research\momentum_in_primaries\analysis\july_2010"
-cap cd "C:\Documents and Settings\nschiff\My Documents\research\momentum_in_primaries\analysis\july_2010"
-cap cd "C:\Users\Administrator.MJ09220\Documents\research\momentum_in_primaries\analysis\july_2010"
+*cap cd "C:\Users\schiff\Documents\research\momentum_in_primaries\analysis\july_2010"
+*cap cd "C:\Documents and Settings\nschiff\My Documents\research\momentum_in_primaries\analysis\july_2010"
+*cap cd "C:\Users\Administrator.MJ09220\Documents\research\momentum_in_primaries\analysis\july_2010"
 set more off
 
 *capture log close
@@ -15,7 +15,7 @@ global y=1
 while $y<=100{
 
 clear
-use "bootsamples\bootsample9_$y", clear
+use "bootsample$y", clear
 *FIX Nt problem--not necessary if use create_complete_data1 and create_complete_data1 to generate bootsamples
 replace n3=7
 replace n7=2

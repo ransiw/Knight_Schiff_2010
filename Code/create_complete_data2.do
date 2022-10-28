@@ -4,12 +4,12 @@ CREATES: complete_data.dta
 The analysis programs "MNL_2step," "graphs_before," and "graphs_after" will run on complete_data.dta
 */
 
-*cap cd Z:\files\primaries\july24_2007\
-*cap cd Z:\My Documents\economics\momentum_in_primaries\analysis\scratch
+*cap cd "Z:\files\primaries\july24_2007\"
+*cap cd "Z:\My Documents\economics\momentum_in_primaries\analysis\scratch"
 *cap cd "C:\Documents and Settings\nschiff\My Documents\economics\momentum_primaries\analysis\complete"
-cap cd "Z:\My Documents\economics\momentum_in_primaries\analysis\August"
-cap cd "C:\Users\schiff\Documents\research\momentum_in_primaries\analysis\july_2010"
-cap cd "C:\Users\Administrator.MJ09220\Documents\research\momentum_in_primaries\analysis\july_2010"
+*cap cd "Z:\My Documents\economics\momentum_in_primaries\analysis\August"
+*cap cd "C:\Users\schiff\Documents\research\momentum_in_primaries\analysis\july_2010"
+*cap cd "C:\Users\Administrator.MJ09220\Documents\research\momentum_in_primaries\analysis\july_2010"
 
 clear
 set mem 160m

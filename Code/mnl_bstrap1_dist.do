@@ -4,19 +4,19 @@ set mem 400m
 
 
 *cd "z:\files\primaries\july24_2007"
-cap cd "C:\Users\schiff\Documents\research\momentum_in_primaries\analysis\july_2010"
-cap cd "C:\Documents and Settings\nschiff\My Documents\research\momentum_in_primaries\analysis\july_2010"
-cap cd "C:\Users\Administrator.MJ09220\Documents\research\momentum_in_primaries\analysis\july_2010"
+*cap cd "C:\Users\schiff\Documents\research\momentum_in_primaries\analysis\july_2010"
+*cap cd "C:\Documents and Settings\nschiff\My Documents\research\momentum_in_primaries\analysis\july_2010"
+*cap cd "C:\Users\Administrator.MJ09220\Documents\research\momentum_in_primaries\analysis\july_2010"
 set more off
 
 *capture log close
 *log using mnl_2step_noclark_dist.log, replace
 
 global y=1
-while $y<=100{
+while $y<=1000{
 
 clear
-use "bootsamples\bootsample9_$y", replace
+use "bootsample$y", replace
 
 *FIX Nt problem
 replace n3=7
@@ -60,6 +60,9 @@ save bresults$y, replace
 
 global y=$y+1
 }
+
+*at the 494th iteration I got an error that said "cannot compute improvement - flat region encountered"
+*I follow the authors and keep it to a 100 below
 
 clear
 use bresults1

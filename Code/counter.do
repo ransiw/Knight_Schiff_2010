@@ -1,6 +1,6 @@
 clear
 
-cap cd "C:\Users\Administrator.MJ09220\Documents\research\momentum_in_primaries\analysis\july_2010"
+*cap cd "C:\Users\Administrator.MJ09220\Documents\research\momentum_in_primaries\analysis\july_2010"
 *cd z:\files\primaries\july24_2007\
 
 use after1_nodist.dta, clear
@@ -120,6 +120,8 @@ save after3.dta, replace
 *Run counterfactual weighting by delegates
 sort cst
 save after3.dta, replace
+
+* The delegates.dta files was not provided by the authors so cannot merge
 cap drop _merge
 merge cst using delegates.dta
 

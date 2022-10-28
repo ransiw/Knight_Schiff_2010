@@ -1,0 +1,7 @@
+Path to Stata input folders 
+
+"/Users/rw/Documents/Replication/Knight_Schiff/Knight_Schiff_2010/Data/Input"
+
+Path to Stata output folders
+
+"/Users/rw/Documents/Replication/Knight_Schiff/Knight_Schiff_2010/Data/Output_Stata"

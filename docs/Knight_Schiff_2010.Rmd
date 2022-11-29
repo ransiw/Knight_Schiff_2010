@@ -1,0 +1,31 @@
+---
+title: "Replication: Knight and Schiff (2010)"
+author: Ransi
+output: html_notebook
+---
+
+This document replicates the classic 2010 Knight and Schiff paper Momentum and Social Learning in Presidential Primaries. 
+
+
+
+I start with the equation 21 of the paper which is the first step of the estimation to isolated the parameters $\{\eta_{cs}\}_{s \in S,c \in C\backslash\{0\}},\{\mu_{c1}\}_{c \in C\backslash\{0\}}$ which are the pre-Iowa parameters. The $\eta_{cs}$ represent the time-invariant state specific preference for candidate $c$ over candidate $0$ in state $s$ which is sampled from the distribution $\mathcal{N}(0,\sigma^2_{\eta})$. The $\mu_{c1}, \mu_{d1}$ parameters are the pre-Iowa mean of the prior of candidate quality. Particularly, candidate quality is distributed $q_c \sim \mathcal{N}(\mu_{c1},\sigma^2_1)$. 
+
+The estimation step is performed by a multinomial logistic regression on just the state dummy variables. The authors obtain standard deviations for $\eta_{cs}$ by bootstrapping. 
+
+First step is to estimate 
+
+
+
+The authors provide the dataset `complete_data` that includes all the polling data
+
+```{r}
+library(tidyverse)
+
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Cmd+Shift+K* to preview the HTML file). 
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+
